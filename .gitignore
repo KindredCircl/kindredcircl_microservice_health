@@ -1,0 +1,49 @@
+# Byte-compiled Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment directories
+venv/
+.env/
+.Python
+
+# Package directory
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Test coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# Environment variables
+.env
+.env.*
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Git-specific
+!.gitignore
+
+# Custom entries (specific to this project structure)
+tests/__pycache__/
+tests/**/*.pyc
+utils/__pycache__/

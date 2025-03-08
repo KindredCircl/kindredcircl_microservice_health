@@ -1,0 +1,117 @@
+# -----------------------------------------------------------------------------
+# Global Logging Settings
+# -----------------------------------------------------------------------------
+
+LOG_LEVEL: "INFO"
+# Overall application log level. Affects all loggers unless overridden below.
+# Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+FILE_LOG_LEVEL: "DEBUG"
+# Log level for file handlers. Allows for more detailed logging in files.
+# Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+CONSOLE_LOG_LEVEL: "WARNING"
+# Log level for console output. Reduces console noise by only showing warnings and errors.
+# Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# -----------------------------------------------------------------------------
+# Logging System Configuration
+# -----------------------------------------------------------------------------
+
+LOG_FILE_PATH: "logs/health_service.log"
+# Path to the main application log file.
+
+ERROR_LOG_FILE_PATH: "logs/error.log"
+# Path to the separate log file for internal logging errors and failures.
+# This helps diagnose issues with the logging system itself.
+
+LOG_QUEUE_SIZE: 10000
+# Maximum size of the logging queue. Prevents memory overflow if the logging thread falls behind.
+# Adjust based on expected log volume and system resources.
+
+MAX_LOG_FILE_SIZE: 5000000  # 5MB
+# Maximum size (in bytes) of individual log files before rotation.
+# Adjust based on storage capacity and log retention policies.
+
+MAX_BACKUP_FILES: 5
+# Number of rotated log files to keep. Older files will be deleted.
+# Adjust based on log retention policies.
+
+# -----------------------------------------------------------------------------
+# Advanced Logging Controls
+# -----------------------------------------------------------------------------
+
+logging:
+  enable_memory_logging: true
+  # Enables logging of memory usage with each log entry.
+  # Useful for performance monitoring and resource analysis.
+
+  enable_execution_time_logging: true
+  # Enables logging of execution time for functions and code blocks.
+  # Useful for performance analysis and identifying bottlenecks.
+
+  enable_request_metadata: true
+  # Enables logging of request metadata (request_id, user_id, feed_type).
+  # Essential for tracing requests and analyzing user behavior.
+
+  enable_stack_trace_logging: true
+  # Enables logging of full stack traces for errors.
+  # Crucial for debugging and identifying the root cause of exceptions.
+
+# -----------------------------------------------------------------------------
+# Health Check Configuration
+# -----------------------------------------------------------------------------
+
+health:
+  retry_count: 3
+  # Number of retries for failed health checks before marking a service as unhealthy.
+  # Helps handle transient network or service issues.
+
+  timeout: 5  # seconds
+  # Timeout (in seconds) for individual health checks.
+  # Prevents health checks from hanging indefinitely.
+
+  enable_database_check: true
+  # Enables health checks for the database connection.
+
+  enable_cache_check: true
+  # Enables health checks for the Redis cache connection.
+
+  enable_messaging_check: true
+  # Enables health checks for the messaging queue connection (RabbitMQ/Kafka).
+
+# -----------------------------------------------------------------------------
+# External Services Configuration
+# -----------------------------------------------------------------------------
+
+database:
+  url: "https://localhost:5432/health_db"
+  # Connection URL for the PostgreSQL database.
+  # Format: postgresql://user:password@host:port/database
+
+cache:
+  host: "localhost"
+  # Hostname or IP address of the Redis cache server.
+
+  port: 6379
+  # Port number of the Redis cache server.
+
+messaging:
+  host: "localhost"
+  # Hostname or IP address of the messaging queue server (RabbitMQ/Kafka).
+
+  port: 5672
+  # Port number of the messaging queue server.
+
+# -----------------------------------------------------------------------------
+# Alerting Configuration
+# -----------------------------------------------------------------------------
+
+alerts:
+  slack_webhook: "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+  # Slack webhook URL for sending alerts.
+  # Obtain from your Slack workspace integration settings.
+
+  failure_threshold: 3
+  # Number of consecutive failed health checks for a service before triggering an alert.
+  # Prevents alerts for transient issues.
